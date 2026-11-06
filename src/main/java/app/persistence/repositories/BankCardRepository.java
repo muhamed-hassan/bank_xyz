@@ -1,13 +1,11 @@
 package app.persistence.repositories;
 
+import org.springframework.stereotype.Repository;
+
 import app.persistence.entities.BankCard;
 import lib.persistence.repositories.BaseRepository;
 
-// @ApplicationScoped with Java EE / @Repository with Spring
+@Repository
 public class BankCardRepository extends BaseRepository<BankCard> {
-
-	protected BankCardRepository() {
-		super(BankCard.class);
-	}
 
 }

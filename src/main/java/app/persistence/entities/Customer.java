@@ -1,7 +1,6 @@
 package app.persistence.entities;
 
 import java.util.Date;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -17,6 +16,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 	
+	@Column
 	private String name;
 	
 	@Column(name = "national_id")
@@ -26,10 +26,13 @@ public class Customer {
 	private Date dateOfBirth;
 	
 	@Embedded
-	private ContactInfo contactInfo;
+	private ContactInformation contactInformation;
 	
 	@Embedded
-	private BankAccountInfo bankAccountInfo;
+	private BankAccountInformation bankAccountInformation;
+	
+	@Column(name = "joined_on")
+	private Date joinedOn;
 	
 	public int getId() {
 		return id;
@@ -63,40 +66,28 @@ public class Customer {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public ContactInfo getContactInfo() {
-		return contactInfo;
+	public ContactInformation getContactInformation() {
+		return contactInformation;
 	}
 
-	public void setContactInfo(ContactInfo contactInfo) {
-		this.contactInfo = contactInfo;
+	public void setContactInformation(ContactInformation contactInformation) {
+		this.contactInformation = contactInformation;
 	}
 
-	public BankAccountInfo getBankAccountInfo() {
-		return bankAccountInfo;
+	public BankAccountInformation getBankAccountInformation() {
+		return bankAccountInformation;
 	}
 
-	public void setBankAccountInfo(BankAccountInfo bankAccountInfo) {
-		this.bankAccountInfo = bankAccountInfo;
+	public void setBankAccountInformation(BankAccountInformation bankAccountInformation) {
+		this.bankAccountInformation = bankAccountInformation;
 	}
 	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public Date getJoinedOn() {
+		return joinedOn;
 	}
 
-	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
-			return true;
-		}
-		if (object == null) {
-			return false;
-		}
-		if (getClass() != object.getClass()) {
-			return false;
-		}
-		Customer other = (Customer) object;
-		return id == other.getId();
+	public void setJoinedOn(Date joinedOn) {
+		this.joinedOn = joinedOn;
 	}
 
 }

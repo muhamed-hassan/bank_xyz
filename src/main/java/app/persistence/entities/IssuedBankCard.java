@@ -1,6 +1,7 @@
 package app.persistence.entities;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class IssuedBankCard {
 	
 	@ManyToOne
 	@JoinColumn(name = "bank_card_type_id", referencedColumnName = "id")
-	private BankCard type;
+	private BankCard bankCard;
 	
 	@Column(name = "date_of_issuance")
 	private Date dateOfIssuance;
@@ -46,12 +47,12 @@ public class IssuedBankCard {
 		this.issuer = issuer;
 	}
 
-	public BankCard getType() {
-		return type;
+	public BankCard getBankCard() {
+		return bankCard;
 	}
 
-	public void setType(BankCard type) {
-		this.type = type;
+	public void setBankCard(BankCard bankCard) {
+		this.bankCard = bankCard;
 	}
 
 	public Date getDateOfIssuance() {
@@ -60,6 +61,26 @@ public class IssuedBankCard {
 
 	public void setDateOfIssuance(Date dateOfIssuance) {
 		this.dateOfIssuance = dateOfIssuance;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+		if (object == null) {
+			return false;
+		}
+		if (getClass() != object.getClass()) {
+			return false;
+		}
+		IssuedBankCard other = (IssuedBankCard) object;
+		return id == other.getId();
 	}
 
 }

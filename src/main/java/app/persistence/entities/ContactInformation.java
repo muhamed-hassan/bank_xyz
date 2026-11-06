@@ -4,10 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ContactInfo {
+public class ContactInformation {
 	
+	@Column
 	private String mobile;
 	
+	@Column
 	private String email;
 	
 	@Column(name = "mailing_address")

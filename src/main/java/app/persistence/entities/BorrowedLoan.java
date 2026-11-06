@@ -1,6 +1,7 @@
 package app.persistence.entities;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +26,9 @@ public class BorrowedLoan {
 	
 	@ManyToOne
 	@JoinColumn(name = "loan_type_id", referencedColumnName = "id")
-	private Loan type;
+	private Loan loan;
 	
+	@Column
 	private float amount;
 	
 	@Column(name = "borrowing_date")
@@ -48,12 +50,12 @@ public class BorrowedLoan {
 		this.borrower = borrower;
 	}
 
-	public Loan getType() {
-		return type;
+	public Loan getLoan() {
+		return loan;
 	}
 
-	public void setType(Loan type) {
-		this.type = type;
+	public void setLoan(Loan loan) {
+		this.loan = loan;
 	}
 
 	public float getAmount() {
@@ -70,6 +72,26 @@ public class BorrowedLoan {
 
 	public void setBorrowingDate(Date borrowingDate) {
 		this.borrowingDate = borrowingDate;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+		if (object == null) {
+			return false;
+		}
+		if (getClass() != object.getClass()) {
+			return false;
+		}
+		BorrowedLoan other = (BorrowedLoan) object;
+		return id == other.getId();
 	}
 
 }

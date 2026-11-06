@@ -2,6 +2,7 @@ package app.persistence.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,13 @@ public class BankTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 	
+	@Column
 	private String type;
+	
+	public enum TxType {
+		
+		DEPOSIT, WITHDRAWAL, TRANSFER
+	}
 
 	public int getId() {
 		return id;
